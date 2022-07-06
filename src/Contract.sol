@@ -1,8 +1,8 @@
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.10;
 
-//already covered
-//import "forge-std/Test.sol";
+
+import "../lib/forge-std/src/Test.sol";
 
 error Unauthorized();
 
