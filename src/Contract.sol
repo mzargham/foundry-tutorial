@@ -2,7 +2,6 @@
 pragma solidity ^0.8.10;
 
 import "../lib/forge-std/src/Test.sol";
-//import "../test/Contract.t.sol";
 
 error Unauthorized();
 
@@ -20,6 +19,5 @@ contract OwnerUpOnly {
         }
         count++;
     }
-}
 
 }
