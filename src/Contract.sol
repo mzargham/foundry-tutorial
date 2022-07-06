@@ -1,8 +1,8 @@
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.10;
 
-
 import "../lib/forge-std/src/Test.sol";
+//import "../test/Contract.t.sol";
 
 error Unauthorized();
 
@@ -22,16 +22,4 @@ contract OwnerUpOnly {
     }
 }
 
-contract OwnerUpOnlyTest is Test {
-    OwnerUpOnly upOnly;
-
-    function setUp() public {
-        upOnly = new OwnerUpOnly();
-    }
-
-    function testIncrementAsOwner() public {
-        assertEq(upOnly.count(), 0);
-        upOnly.increment();
-        assertEq(upOnly.count(), 1);
-    }
 }
