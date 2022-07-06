@@ -1,15 +1,16 @@
 // SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.10;
 
-import "forge-std/Test.sol";
-import {console2} from "forge-std/console2.sol";
+//import "forge-std/Test.sol";
 
-contract ContractTest is Test {
-    function setUp() public {}
+contract OwnerUpOnlyTest is Test {
+    OwnerUpOnly upOnly;
 
-    function testExample() public {
-        vm.startPrank(address(0xB0B));
-        console2.log("Hello world!");
-        assertTrue(true);
+    // ...
+
+    function testFailIncrementAsNotOwner() public {
+        vm.prank(address(0));
+        upOnly.increment();
     }
 }
+

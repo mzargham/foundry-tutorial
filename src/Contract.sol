@@ -1,22 +1,37 @@
-// SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.4;
+//SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.10;
 
-contract Contract {
+//already covered
+//import "forge-std/Test.sol";
 
-    // amount of ether you deposited is saved in balances
-    mapping(address => uint) public balances;
-    // when you can withdraw is saved in lockTime
-    mapping(address => uint) public lockTime;
+error Unauthorized();
 
-    function deposit() external payable {
+contract OwnerUpOnly {
+    address public immutable owner;
+    uint256 public count;
 
-        //update balance
-        balances[msg.sender] +=msg.value;
-
-        //updates locktime 1 week from now
-        lockTime[msg.sender] = block.timestamp + 1 weeks;
-
+    constructor() {
+        owner = msg.sender;
     }
 
+    function increment() external {
+        if (msg.sender != owner) {
+            revert Unauthorized();
+        }
+        count++;
+    }
 }
 
+contract OwnerUpOnlyTest is Test {
+    OwnerUpOnly upOnly;
+
+    function setUp() public {
+        upOnly = new OwnerUpOnly();
+    }
+
+    function testIncrementAsOwner() public {
+        assertEq(upOnly.count(), 0);
+        upOnly.increment();
+        assertEq(upOnly.count(), 1);
+    }
+}
