@@ -1,6 +1,6 @@
 # Foundry template
 
-This is a template for a Foundry project.
+> I used the Foundry Template to set up the repo, and then i used this test centric tutorial from the Foundry book https://book.getfoundry.sh/forge/cheatcodes.html
 
 ## Installation
 
